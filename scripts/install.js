@@ -119,7 +119,7 @@ rl.write('Choose the OS you will be using:\n');
           ;
         if (process.platform === 'darwin') {
           linkSource = path.join(dest, 'Contents', 'MacOS', 'node-webkit');
-          linkDest = 'jasr';
+          linkDest = 'JASR';
           // Create link
           if (!fs.existsSync(path.resolve(process.cwd(), '../..', linkDest))) {
             fs.symlinkSync(linkSource, path.resolve(process.cwd(), '../..', linkDest));
@@ -127,7 +127,7 @@ rl.write('Choose the OS you will be using:\n');
           onLinkCreated();
         } else if (process.platform === 'win32') {
           linkSource = path.join(dest, 'nw.exe');
-          linkDest = 'jasr.lnk';
+          linkDest = 'JASR.lnk';
           // Create link
           if (!fs.existsSync(path.resolve(process.cwd(), '../..', linkDest))) {
             var ws = require('windows-shortcuts');
@@ -144,7 +144,7 @@ rl.write('Choose the OS you will be using:\n');
           else { onLinkCreated(); }
         } else {
           linkSource = path.join(dest, 'nw');
-          linkDest = 'jasr';
+          linkDest = 'JASR';
           // Create link
           if (!fs.existsSync(path.resolve(process.cwd(), '../..', linkDest))) {
             fs.symlinkSync(linkSource, path.resolve(process.cwd(), '../..', linkDest));
