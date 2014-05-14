@@ -9,12 +9,25 @@ var download = require('download')
     ,version = '0.9.2'
     ,url = false
     ,urlBase = 'http://dl.node-webkit.org/v'
+    ,exec = require('child_process').exec
     ;
 
 process.stdin.resume = function() {};
 process.stdin.pause = function() {};
 
 var rl = readline.createInterface({ input: process.stdin,  output: process.stdout });
+
+// Download a dependency only for windows
+if (process.platform === 'win32') {
+  exec('npm install windows-shortcuts@0.1.1',
+    function (error, stdout, stderr) {
+      console.log('stdout: ' + stdout);
+      console.log('stderr: ' + stderr);
+      if (error !== null) {
+        console.log('exec error: ' + error);
+      }
+  });
+}
 
 rl.write('Choose the OS you will be using:\n');
   rl.write('1 - Windows\n');

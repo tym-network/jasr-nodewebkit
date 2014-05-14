@@ -1,6 +1,6 @@
 {
   "name": "nodewebkit",
-  "version": "0.8.9",
+  "version": "0.8.11",
   "description": "A installer for node-webkit",
   "repository": {
     "type": "git",
@@ -27,8 +27,7 @@
     "rimraf": "^2.2.2",
     "download": "^0.1.10",
     "multimeter": "^0.1.1",
-    "yargs": "^1.2.1",
-    "windows-shortcuts": "0.1.x"
+    "yargs": "^1.2.1"
   },
   "devDependencies": {
     "semver": "^2.2.1",
