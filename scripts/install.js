@@ -42,10 +42,10 @@ rl.question(
 	, function(answer)
 	{
 		var dest		= path.resolve(__dirname, '..', 'nodewebkit')
-			, bar		= createBar({ before: url + ' [' })
 			, total		= 0
 			, progress	= 0
 			, d
+			, bar
 			, onLinkCreated = function() {
 				// If OSX, manually set file permissions (until adm-zip supports getting the file mode from zips)
 				if (answer === '2') {
@@ -111,6 +111,7 @@ rl.question(
 
 		
 		rimraf.sync(dest);
+		bar	= createBar({ before: url + ' [' });
 		d = download(url, dest, { extract: true, strip: 1 });
 
 		d.on('response', function(res) {
