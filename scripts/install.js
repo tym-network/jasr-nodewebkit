@@ -109,7 +109,12 @@ rl.question(
 
 		if (!url) error('Could not find a compatible version of node-webkit to download for your platform.');
 
-		
+		// Solve a problem with MacOS by adding a level of directories.
+		if (answer == '2')
+		{
+			dest += "/JASR";
+		}
+
 		rimraf.sync(dest);
 		bar	= createBar({ before: url + ' [' });
 		d = download(url, dest, { extract: true, strip: 1 });
