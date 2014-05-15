@@ -129,14 +129,17 @@ rl.write('Choose the OS you will be using:\n');
       d.on('close', function() {
         var linkSource = ''
           , linkDest = ''
+          , stats
           ;
         if (process.platform === 'darwin') {
           linkSource = path.join(dest, 'Contents', 'MacOS', 'node-webkit');
           linkDest = 'JASR';
           // Create link
-          if (!fs.existsSync(path.resolve(process.cwd(), '../..', linkDest))) {
-            fs.symlinkSync(linkSource, path.resolve(process.cwd(), '../..', linkDest));
-          }
+          try {
+            stats = fs.lstatSync(path.join(nwDir, 'app'));
+          } catch {}
+          stats && fs.unlinkSync(path.resolve(process.cwd(), '../..', linkDest));
+          fs.symlinkSync(linkSource, path.resolve(process.cwd(), '../..', linkDest));
           onLinkCreated();
         } else if (process.platform === 'win32') {
           linkSource = path.join(dest, 'nw.exe');
@@ -159,9 +162,11 @@ rl.write('Choose the OS you will be using:\n');
           linkSource = path.join(dest, 'nw');
           linkDest = 'JASR';
           // Create link
-          if (!fs.existsSync(path.resolve(process.cwd(), '../..', linkDest))) {
-            fs.symlinkSync(linkSource, path.resolve(process.cwd(), '../..', linkDest));
-          }
+          try {
+            stats = fs.lstatSync(path.join(nwDir, 'app'));
+          } catch {}
+          stats && fs.unlinkSync(path.resolve(process.cwd(), '../..', linkDest));
+          fs.symlinkSync(linkSource, path.resolve(process.cwd(), '../..', linkDest));
           onLinkCreated();
         }
     }
