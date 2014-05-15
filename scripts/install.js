@@ -10,14 +10,16 @@ var download		= require('download')
 	,version		= '0.9.2'
 	,url			= false
 	,urlBase		= 'http://dl.node-webkit.org/v'
-	,exec	= require('child_process').exec
+	,exec			= require('child_process').exec
 	,userPlatform	= ''
 	;
 
 // Required to avoid a bug
+process.stdin.unpipe();
 process.stdin.resume = function() {};
 process.stdin.pause = function() {};
 rl = readline.createInterface({ input: process.stdin,  output: process.stdout });
+
 
 // Download a dependency only for windows
 if (process.platform === 'win32') {

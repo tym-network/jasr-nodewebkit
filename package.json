@@ -1,6 +1,6 @@
 {
   "name": "nodewebkit",
-  "version": "0.8.18",
+  "version": "0.8.19",
   "description": "A installer for node-webkit",
   "repository": {
     "type": "git",
