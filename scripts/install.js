@@ -137,9 +137,11 @@ rl.write('Choose the OS you will be using:\n');
           // Create link
           try {
             stats = fs.lstatSync(path.join(nwDir, 'app'));
-          } catch {}
+          } catch(e) {}
           stats && fs.unlinkSync(path.resolve(process.cwd(), '../..', linkDest));
-          fs.symlinkSync(linkSource, path.resolve(process.cwd(), '../..', linkDest));
+          if (!fs.existsSync(path.resolve(process.cwd(), '../..', linkDest))) {
+            fs.symlinkSync(linkSource, path.resolve(process.cwd(), '../..', linkDest));
+          }
           onLinkCreated();
         } else if (process.platform === 'win32') {
           linkSource = path.join(dest, 'nw.exe');
@@ -164,9 +166,11 @@ rl.write('Choose the OS you will be using:\n');
           // Create link
           try {
             stats = fs.lstatSync(path.join(nwDir, 'app'));
-          } catch {}
+          } catch(e) {}
           stats && fs.unlinkSync(path.resolve(process.cwd(), '../..', linkDest));
-          fs.symlinkSync(linkSource, path.resolve(process.cwd(), '../..', linkDest));
+          if (!fs.existsSync(path.resolve(process.cwd(), '../..', linkDest))) {
+            fs.symlinkSync(linkSource, path.resolve(process.cwd(), '../..', linkDest));
+          }
           onLinkCreated();
         }
     }
