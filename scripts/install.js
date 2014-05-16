@@ -146,9 +146,9 @@ rl.question(
 		  		, linkDest = ''
 		  		, stats
 		  		;
-			if (process.platform !== userPlatform)
+			if (userPlatform === 'win32' && process.platform !== userPlatform)
 			{
-				// When you install JASR from a platform different from the one you choose, don't create a shortcut
+				// When you install JASR for Windows from Linux or Mac, don't create a shortcut
 				onLinkCreated();
 			}
 			else
