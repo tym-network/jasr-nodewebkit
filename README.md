@@ -1,10 +1,10 @@
-# nodewebkit [![Build Status](http://img.shields.io/travis/shama/nodewebkit.svg)](https://travis-ci.org/shama/nodewebkit)
+# jasr-nodewebkit
 
 An installer for [node-webkit](https://github.com/rogerwang/node-webkit).
 
 > node-webkit is an app runtime based on Chromium and node.js. For building desktop applications that will run on OSX, Windows and Linux.
 
-[![NPM](https://nodei.co/npm/nodewebkit.png?downloads=true)](https://nodei.co/npm/nodewebkit/)
+This installer is a fork of [nodewebkit](https://github.com/shama/nodewebkit) with specificities linked to JASR. It will prompt the user to let him choose what OS he is using (rather than using the one that installs the app, which might be different if we use VMs or servers). This code will also create a shortcut and links so that the app is ready to run when the installation is complete.
 
 ## usage
 Install locally to your project with: `npm install nodewebkit` and then in your `package.json` add a script:
@@ -52,11 +52,8 @@ recommended if you installed nodewebkit globally using `-g`.  Also note that
 [OS X caches these files](http://proteo.me.uk/2011/08/mac-application-bundle-caching/),
 so you may need to manually clear these cached files during development.
 
-## install a specific version of node-webkit
-
-To install a spcific version of node-webkit use npm with the specific version: `npm install nodewebkit@0.9.2`
-
-> *Please note:* This npm package version tracks the version of node-webkit that will be installed, with an additional build number that is used for revisions to the installer. As such `0.9.2-1` and `0.9.2-2` will both install `node-webkit@0.9.2` but the latter has newer changes to the installer.
+## Version
+The version of node-webkit that will be installed is defined in the script "install.js".
 
 ## license
 [node-webkit](https://github.com/rogerwang/node-webkit)'s code and this installer use the MIT license.

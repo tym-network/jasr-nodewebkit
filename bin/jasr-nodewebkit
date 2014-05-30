@@ -4,7 +4,7 @@ var fs = require('fs');
 var path = require('path');
 var spawn = require('child_process').spawn;
 
-var bindir = path.resolve(__dirname, '..', 'nodewebkit');
+var bindir = path.resolve(__dirname, '..', 'jasr-nodewebkit');
 
 function run() {
   // Rename nodewebkit's own package.json as workaround for https://github.com/rogerwang/node-webkit/issues/1503

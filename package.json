@@ -1,13 +1,13 @@
 {
-  "name": "nodewebkit",
-  "version": "0.8.21",
-  "description": "A installer for node-webkit",
+  "name": "jasr-nodewebkit",
+  "version": "0.0.1",
+  "description": "A installer for node-webkit, specific to JASR",
   "repository": {
     "type": "git",
-    "url": "git://github.com/tym-network/nodewebkit.git"
+    "url": "git://github.com/tym-network/jasr-nodewebkit.git"
   },
   "bin": {
-    "nodewebkit": "bin/nodewebkit"
+    "jasr-nodewebkit": "bin/jasr-nodewebkit"
   },
   "scripts": {
     "postinstall": "node scripts/install.js",
