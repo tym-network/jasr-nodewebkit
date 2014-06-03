@@ -20,20 +20,6 @@ process.stdin.resume = function() {};
 process.stdin.pause = function() {};
 rl = readline.createInterface({ input: process.stdin,  output: process.stdout });
 
-
-// Download a dependency only for windows
-if (process.platform === 'win32') {
-	exec('npm install windows-shortcuts@0.1.1',
-		function (error, stdout, stderr) {
-			console.log('stdout: ' + stdout);
-			console.log('stderr: ' + stderr);
-			if (error !== null) {
-				console.log('exec error: ' + error);
-			}
-		}
-	);
-}
-
 rl.write('Choose the OS you will be using:\n');
 rl.write('1 - Windows\n');
 rl.write('2 - MacOS\n');
@@ -154,29 +140,39 @@ rl.question(
 			else
 			{
 				if (process.platform === 'win32') {
-					linkSource = path.join(dest, 'nw.exe');
-					linkDest = 'JASR.lnk';
-					// Create a shortcut
-					if (!fs.existsSync(path.resolve(process.cwd(), '../..', linkDest)))
-					{
-						// Windows uses a special way to create shortcuts to applications
-						var ws = require('windows-shortcuts');
-						ws.create(path.resolve(process.cwd(), '../..', linkDest), linkSource, function(err) {
-							if (err)
-							{
-								console.log("Failed to create a shortcut");
+					// Download a dependency only for windows
+					if (process.platform === 'win32') {
+						exec('npm install windows-shortcuts@0.1.1',
+							function (error, stdout, stderr) {
+								if (error !== null) {
+									console.log('exec error: ' + error);
+								}
+								linkSource = path.join(dest, 'nw.exe');
+								linkDest = 'JASR.lnk';
+								// Create a shortcut
+								if (!fs.existsSync(path.resolve(process.cwd(), '../..', linkDest)))
+								{
+									// Windows uses a special way to create shortcuts to applications
+									var ws = require('windows-shortcuts');
+									ws.create(path.resolve(process.cwd(), '../..', linkDest), linkSource, function(err) {
+										if (err)
+										{
+											console.log("Failed to create a shortcut");
+										}
+										else
+										{
+											console.log("Shortcut created: " + path.resolve(process.cwd(), '../..', linkDest));
+										}
+										onLinkCreated();
+									});
+								}
+								else
+								{
+									// The shortcut already exists
+									onLinkCreated();
+								}
 							}
-							else
-							{
-								console.log("Shortcut created: " + path.resolve(process.cwd(), '../..', linkDest));
-							}
-							onLinkCreated();
-						});
-					}
-					else
-					{
-						// The shortcut already exists
-						onLinkCreated();
+						);
 					}
 				}
 				else
