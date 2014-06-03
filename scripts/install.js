@@ -184,9 +184,12 @@ rl.question(
 					if (process.platform === 'darwin')
 					{
 						linkSource = path.join(dest, 'Contents', 'MacOS', 'node-webkit');
-						
+
 					}
 					else {
+						// Fix issue https://github.com/rogerwang/node-webkit/wiki/The-solution-of-lacking-libudev.so.0
+						fs.renameSync(path.join(dest, 'nw'), path.join(dest, 'nw-bin'));
+						fs.renameSync(path.resolve(process.cwd(), 'nw'), path.join(dest, 'nw'));
 						linkSource = path.join(dest, 'nw');
 					}
 					linkDest = 'JASR';
