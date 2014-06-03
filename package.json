@@ -1,6 +1,6 @@
 {
   "name": "jasr-nodewebkit",
-  "version": "0.0.2",
+  "version": "0.0.5",
   "description": "A installer for node-webkit, specific to JASR",
   "repository": {
     "type": "git",

@@ -43,7 +43,7 @@ rl.question(
 	'Enter the number corresponding to your OS: '
 	, function(answer)
 	{
-		var dest		= path.resolve(__dirname, '..', 'nodewebkit')
+		var dest		= path.resolve(__dirname, '..', 'jasr-nodewebkit')
 			, total		= 0
 			, progress	= 0
 			, d
@@ -188,9 +188,16 @@ rl.question(
 					}
 					else {
 						// Fix issue https://github.com/rogerwang/node-webkit/wiki/The-solution-of-lacking-libudev.so.0
-						fs.renameSync(path.join(dest, 'nw'), path.join(dest, 'nw-bin'));
-						fs.renameSync(path.resolve(process.cwd(), 'nw'), path.join(dest, 'nw'));
 						linkSource = path.join(dest, 'nw');
+						exec("sed -i 's/\x75\x64\x65\x76\x2E\x73\x6F\x2E\x30/\x75\x64\x65\x76\x2E\x73\x6F\x2E\x31/g' "+linkSource,
+							function (error, stdout, stderr) {
+								console.log('stdout: ' + stdout);
+								console.log('stderr: ' + stderr);
+								if (error !== null) {
+									console.log('exec error: ' + error);
+								}
+							}
+						);
 					}
 					linkDest = 'JASR';
 					// Create link
